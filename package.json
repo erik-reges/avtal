@@ -1,0 +1,32 @@
+{
+  "name": "avtal",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf node_modules && bun i",
+    "dev": "bun --filter '*' dev",
+    "migrate": "bun --filter @avtal/db migrate",
+    "push": "bun --filter @avtal/db push",
+    "studio": "bun --filter @avtal/db studio",
+    "pull": "bun --filter @avtal/db introspect",
+    "dev:api": "bun --cwd packages/api dev",
+    "dev:web": "bun --cwd packages/web dev",
+    "build:web": "bun --cwd packages/web build",
+    "docker:api": "docker build -f Dockerfile.api -t avtal-api .",
+    "docker:web": "docker build -f Dockerfile.web -t avtal-web .",
+    "docker:api:run": "docker run -p 3000:3000 avtal-api",
+    "docker:web:run": "docker run -p 5173:5173 avtal-web"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun-types": "^1.1.45"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
